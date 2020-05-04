@@ -54,6 +54,7 @@ public class Main extends ListenerAdapter {
         }
 
         /*Helpful commands*/
+        //TODO: create a Game array so that at least one game can run in each server instead of one game at a time for all servers.
         if (command.equals("!help")) {
 
             Game.help(event);

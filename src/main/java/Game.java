@@ -226,6 +226,7 @@ public class Game {
                 if ( !prevCard.specialType.equals(players[turn].hand[card].specialType) ) { //If cards are not the same face
 
                     event.getChannel().sendMessage("Invalid play, cards must be the same color or have the same face value.").queue();
+                    return;
 
                 }
 
@@ -233,15 +234,20 @@ public class Game {
 
             if ( prevCard.value != players[turn].hand[card].value ) {  //If the cards aren't the same value
 
-
+                event.getChannel().sendMessage("Invalid play, cards must be the same color or have the same face value.").queue();
+                return;
 
             }
 
         } else { //If colors aren't the same
 
             event.getChannel().sendMessage("Invalid play, cards must be the same color or have the same face value.").queue();
+            return;
 
         }
+
+        //So if it makes it this far, that means that the card works
+
 
     }
 

@@ -1,3 +1,7 @@
+/**
+ *
+ */
+
 public class Card {
 
     static int value;

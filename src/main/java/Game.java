@@ -11,7 +11,7 @@ public class Game {
 
     static Deck deck = new Deck();
 
-    static Player[] players = new Player[4];
+    static Player[] players = new Player[8];
 
     static int Players = 0;
 
@@ -150,7 +150,7 @@ public class Game {
 
         }
 
-        if (Players == 4) {
+        if (Players == 8) {
 
             event.getChannel().sendMessage("Lobby's full! Let's Play!").queue();
             startGame(event);
@@ -161,26 +161,6 @@ public class Game {
     }
 
     public static void startGame(MessageReceivedEvent event) {
-
-        //Adds computers if there's not enough players
-        if (Players < 4) {
-
-            for (; Players < 4; Players++) {
-
-                int computer = 1;
-
-                players[Players] = new Player();
-                players[Players].isComputer = true;
-
-                players[Players].playerTag = "Computer #" + computer;
-                players[Players].ID = "";
-                players[Players].playerName = "Computer #" + computer;
-                players[Players].user = null;
-                computer++;
-
-            }
-
-        }
 
         //First things first let's get our player list shuffled
         List<Player> shufflePlayers = Arrays.asList(players);
@@ -224,12 +204,6 @@ public class Game {
             event.getChannel().sendMessage(players[turn].playerTag + ", it's your turn!").queue();
 
         }
-
-        /*if (players[turn].isComputer) {
-
-            Turn(event, "");
-
-        }*/
 
     }
 

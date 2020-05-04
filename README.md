@@ -7,5 +7,4 @@ Discord bot that plays Uno in servers.
 ##Commands
 * !help - Provides all the commands in the form of a discord direct message.
 * !rules - Direct messages the user Uno rules to whomever sends !rules.
-* !start - Starts a game of _Uno!_  
- 
+* !start - Starts a game of _Uno!_

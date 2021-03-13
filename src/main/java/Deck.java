@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class Deck {
 
@@ -106,6 +107,7 @@ public class Deck {
 
                         case 9:
                             deck[place].cardName = deck[place].cardName + " " + String.valueOf(deck[place].value);
+                            deck[place].pointValue = deck[place].value;
 
                             break;
 
@@ -179,16 +181,6 @@ public class Deck {
 
     }
 
-    public static void shuffleDeck() {
-
-        List<Card> cards = Arrays.asList(deck);
-
-        Collections.shuffle(cards);
-
-        cards.toArray(deck);
-
-    }
-
     public static void printDeck() {
 
         for (int i = 0; i < 108; i++) {
@@ -197,6 +189,132 @@ public class Deck {
             System.out.printf("%d\t%d\t%s\t%b\t%s\t%b\t%s\t%s\t%s\n", deck[i].value, deck[i].pointValue, deck[i].color, deck[i].isSpecialType, deck[i].specialType, deck[i].isWildCard, deck[i].wildCardType, deck[i].cardName, deck[i].emote);
 
         }
+
+    }
+
+    public static Card drawCard() {
+
+        Card card = new Card();
+
+        Random rndm = new Random();
+
+        int newCard = rndm.nextInt(108);
+
+        boolean validCard = false;
+
+        //We're gonna do a do-while loop because fuck you I'm an adult and I do what I want
+        {
+
+            if (!deck[newCard].isPlayed)
+                validCard = true;
+
+        } while (!validCard);
+
+        card = deck[newCard];
+        //remove card from deck
+        deck[newCard].isPlayed = true;
+
+        return card;
+
+    }
+
+    public static void putCardBack(Player player, Card card) {
+
+        player.cards--;
+
+        card.isPlayed = false;
+
+        //TODO: make sure this is all that needs to be done.
+
+    }
+
+    //Value Card
+    public static Card findCard(Player player, String color, int value) {
+
+        Card card = new Card();
+
+        for (int i = 0; i < 108; i++) {
+
+            //Check color
+            if (deck[i].color.equals(color)) {
+
+                //Check value
+                if (deck[i].value == value) {
+
+                    //check isPlayed
+                    if (deck[i].isPlayed) {
+
+                        //define the card to make prevCard
+                        card = deck[i];
+                        //Readd card to deck
+                        deck[i].isPlayed = false;
+
+                        i = 108;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        //Now to get the card out of player's hand.
+        for (int j = 0; j < 108; j++) {
+
+            if (player.hand[j].color.equals(color)) {
+
+                //Check value
+                if (player.hand[j].value == value) {
+
+                    //define the card to make prevCard
+                    player.hand[j] = new Card();  //Replace card with blank one so doesn't show in hand anymore.
+
+                    j = 108;
+
+
+
+                }
+
+            }
+
+        }
+
+        return card;
+
+    }
+
+    //Effect/Wild Card
+    public static Card findCard(Player player, String color, String specialType) {
+
+        Card card = new Card();
+
+        for (int i = 0; i < 108; i++) {
+
+            //Check color
+            if (deck[i].color.equals(color)) {
+
+                //Check value
+                if (deck[i].specialType.equals(specialType)) {
+
+                    //check isPlayed
+                    if (deck[i].isPlayed) {
+
+                        //define the card to make prevCard
+                        card = deck[i];
+                        //Readd card to deck
+                        deck[i].isPlayed = false;
+                        i = 108;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        return card;
 
     }
 

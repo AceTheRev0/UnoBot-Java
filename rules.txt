@@ -1,0 +1,3 @@
+Rules:
+- Each player is dealt 7 cards to start off.  Whoever started the game is considered "Dealer" so 2nd person to join goes first.
+- 

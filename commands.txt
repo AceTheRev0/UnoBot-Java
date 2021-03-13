@@ -1,4 +1,6 @@
-!start -- Creates a new game.  NOTE: Only one game can be played at a time.
-!join -- Joins a game when a game is being created.
-!play [number] [color] -- Plays a card.  Card numbers are done from left to right 1 through however many cards you have.  If you're playing a wild, you need to also type a color after the card number.
-!draw -- Draws a card.
+**!start** -- Creates a new game.  NOTE: Only one game can be played at a time.
+**!join** -- Joins a game when a game is being created.
+**!play [color] [number/effect]** -- *!play red 6* -- Plays a card.
+**!draw** -- Draws a card. (ONLY works on your turn)
+**!uno** -- Calls Uno.  You have to do this before the next person plays, or you get hit with a 2 card penalty.
+

@@ -22,10 +22,12 @@ public class Card {
 
     String emote;
 
+    boolean isPlayed;
+
     //Defining base values
     public Card() {
 
-        value = 0;
+        value = -1;
 
         pointValue = 0;
 
@@ -43,8 +45,11 @@ public class Card {
 
         emote = "";
 
+        isPlayed = false;
+
     }
 
+    //TODO: Move to Game.java
     public static void specialCard() {
 
         switch (specialType) {
@@ -92,25 +97,20 @@ public class Card {
 
     }
 
-    public static boolean compCard(Card prevCard) {
+    public static void createCard(String color, int value) {
 
-        if (prevCard.color.equals(color)) { //Test for color first because of Wild Cards
+        Card newCard = new Card();
 
-            return true;
+        newCard.color = color;
+        newCard.value = value;
+        newCard.pointValue = value;
+        newCard.cardName = " ";
 
-        } else if (prevCard.value == value) {
+    }
 
-            return true;
+    public static void createCard(String color, String specialType) {
 
-        } else if (isWildCard) {
 
-            return true;
-
-        } else {
-
-            return false;
-
-        }
 
     }
 

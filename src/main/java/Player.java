@@ -4,16 +4,13 @@ public class Player {
 
     /*Discord info*/
     //playerName matches discord name
-    String playerName;
-
-    //To tag player
-    String playerTag;
+    static String playerName;
 
     //For DM-ing
-    User user;
+    static User user;
 
     //ID to reference
-    String ID;
+    static String ID;
 
     /*Game info*/
     //# of cards player has
@@ -23,9 +20,9 @@ public class Player {
     static Card[] hand = new Card[108];
 
     //Has the player called Uno?
-    boolean calledUno;
+    static boolean calledUno;
 
-    boolean isComputer;
+    static boolean isComputer;
 
     boolean host;
 
@@ -35,8 +32,6 @@ public class Player {
     public Player() {
 
         playerName = "Undefined";
-
-        playerTag = "Undefined";
 
         ID = "";
 
@@ -50,6 +45,27 @@ public class Player {
 
         handEmotes = "";
 
+    }
+
+    public static void importData() {
+
+        playerName = user.getName();
+        ID = user.getId();
+
+
+    }
+
+    public static int points() {
+
+        int handValue = 0;
+
+        for (int i = 0; i < cards; i++) {
+
+            handValue += hand[i].pointValue;
+
+        }
+
+        return handValue;
     }
 
 }

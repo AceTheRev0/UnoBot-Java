@@ -13,15 +13,22 @@ import javax.security.auth.login.LoginException;
 import java.io.FileNotFoundException;
 
 import static net.dv8tion.jda.api.requests.GatewayIntent.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 
 //Revamp everything in here, kinda messy.
 //Add admin controls to control things from discord.  Maybe also add admin controls for the console.
 public class Main extends ListenerAdapter {
 
-    public static void main(String[] args) throws LoginException {
+    public static void main(String[] args) throws LoginException, FileNotFoundException {
 
-        String token = "NDM2NjI3NjIwNzA1MDc1MjAw.Wtj_KA.PurLrxVamRhB52NmU2FpsUnwUXA";
+        File Token = new File("token.txt");
+
+        Scanner scnr = new Scanner (Token);
+
+        String token = scnr.nextLine();
 
         JDABuilder builder = JDABuilder.create(token, GUILD_MESSAGES);
         System.out.println("Token and permissions assigned.");
